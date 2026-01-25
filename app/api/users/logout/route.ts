@@ -1,0 +1,15 @@
+import { NextResponse } from "next/server";
+import { toast } from "react-hot-toast";
+
+export async function GET() {
+    try {
+        const response = NextResponse.json({
+            message: "Logout Successfull",
+            success: true
+        })
+        response.cookies.set("token", "", {httpOnly: true});
+        return response;
+    } catch (error:any) {
+        return NextResponse.json({error: error.message}, {status: 500});
+    }
+}
